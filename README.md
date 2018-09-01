@@ -16,4 +16,4 @@ Also, task procedures can be outlined in the same style as when using a traditio
 
  
 
-cocoOS is extremely portable to any target which makes it a perfect choice during early phases in the development when which OS to use is still an open issue.
+cocoOS is extremely portable to any target which makes it a perfect choice during early phases in the development when which OS to use is still an open issue. You can even run it under Linux or Windows.
