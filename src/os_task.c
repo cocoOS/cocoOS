@@ -339,7 +339,7 @@ uint8_t os_task_next_ready_task( void ) {
 /* Finds the task with highest prio waiting for sem, and makes it ready to run */
 void os_task_release_waiting_task( Sem_t sem ) {
     
-#ifdef ROUND_ROBIN
+#if (ROUND_ROBIN)
 	  uint32_t longestWaitTime = 0;
     uint8_t lastCheckedTask = NO_TID;
 #else
@@ -356,7 +356,7 @@ void os_task_release_waiting_task( Sem_t sem ) {
         taskIsWaitingForThisSemaphore = (( task->state == WAITING_SEM ) && ( task->semaphore == sem ) );
 
         if ( taskIsWaitingForThisSemaphore == 1 ) {
-			#ifdef ROUND_ROBIN
+			#if (ROUND_ROBIN)
 			    /* Release the task that has waited longest */
 				lastCheckedTask = tid;
 			    if ( task->time > longestWaitTime ) {
@@ -374,7 +374,7 @@ void os_task_release_waiting_task( Sem_t sem ) {
     }
 
     /* We have found a waiting task. */
-	#ifdef ROUND_ROBIN
+	#if (ROUND_ROBIN)
 	    if (( longestWaitTime == 0 ) && ( NO_TID != lastCheckedTask )) {
 			/* All waiting tasks had waiting time 0 -> release the last task */
 			foundTask = lastCheckedTask;

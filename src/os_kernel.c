@@ -78,7 +78,7 @@ static void os_schedule( void ) {
 
     running_tid = NO_TID;
 
-#ifdef ROUND_ROBIN
+#if (ROUND_ROBIN)
     /* Find next ready task */
     running_tid = os_task_next_ready_task();
 #else

@@ -166,8 +166,10 @@ void os_wait_event(uint8_t tid, Evt_t ev, uint8_t waitSingleEvent, uint32_t time
 
 
 void os_signal_event( Evt_t ev ) {
-	lastSignaledEvent = ev;
-    os_task_signal_event( ev );
+#if( N_TOTAL_EVENTS > 0 )
+  lastSignaledEvent = ev;
+  os_task_signal_event( ev );
+#endif
 }
 
 
