@@ -47,26 +47,31 @@ extern "C" {
 
 /** Max number of used tasks
 * @remarks Must be defined. @n Allowed range: 0-254. Value must not be exceeded */
-#define N_TASKS             10
-//#define N_TASKS             30
+#ifndef N_TASKS
+ #define N_TASKS             1
+#endif
+
 
 
 /** Max number of used message queues
 * @remarks Must be defined. @n Allowed range: 0-254. Value must not be exceeded */
-#define N_QUEUES            5
-//#define N_QUEUES            20
+#ifndef N_QUEUES
+ #define N_QUEUES            0
+#endif
 
 
 /** Max number of used semaphores
 * @remarks Must be defined. @n Allowed range: 0-254. Value must not be exceeded */
-#define N_SEMAPHORES        5
-//#define N_SEMAPHORES        20
+#ifndef N_SEMAPHORES
+ #define N_SEMAPHORES        0
+#endif
 
 
 /** Max number of used events
 * @remarks Must be defined. @n Allowed range: 0-254. Value must not be exceeded */
-#define N_EVENTS            10
-//#define N_EVENTS            50
+#ifndef N_EVENTS
+ #define N_EVENTS            0
+#endif
 
 
 /** Round Robin scheduling
@@ -80,6 +85,7 @@ typedef uint32_t Mem_t;
 
 #define NO_MSG_ID   0xff
 #define ISR_TID     0xfe
+
 #ifdef __cplusplus
 }
 #endif
