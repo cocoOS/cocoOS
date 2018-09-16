@@ -24,27 +24,19 @@ cocoOS is extremely portable to any target which makes it a perfect choice durin
 
 ## Configuration
 
-To setup cocoOS you have to define 4 constants in os_defines.h. These are: 
+To setup cocoOS you have to define 6 macros. They can be setup in os_defines.h, or as defined as compiler flags, e.g. -DN_TASKS=2... If not defines as flags, they will be set to default values according to the list below:
 
+    - N_TASKS: maximum number of tasks            (0-254, default=1)
+    - N_QUEUES: maxmimum number of message queues (0-254, default=0)
+    - N_SEMAPHORES: maximum number of semaphores  (0-254, default=0)
+    - N_EVENTS: maximum number of events          (0-254, default=0)
+    - ROUND_ROBIN: should round robin scheduling be used ? (0)
+    - Mem_t: address type, e.g. uint32_t          (uint32_t)
 
-    - N_TASKS: maximum number of tasks
-    - N_QUEUES: maxmimum number of message queues
-    - N_SEMAPHORES: maximum number of semaphores
-    - N_EVENTS: maximum numer of events
-
- 
-
-Allowed range for these constants is 0-254. These constants sets the maximum value for the number of used ojects of the specified types. It is allowed to use fewer but not more number of objects.
-
- 
+Asserts will fire if the maximum numbers are violated during runtime. 
 
 To save RAM it is recommended to keep these values as low as possible.
-
  
-
-You should also define a type for memory addresses e.g:
-`typedef uint32_t Mem_t;`
-
 
 ## System setup - application main function
 
@@ -192,7 +184,7 @@ When a task has finished it gives the CPU control to another task by calling one
 Normally the scheduler will give the cpu to the highest priority task ready for execution. It is possible to choose a round robin scheduling algorithm by putting the following line in os_defines.h:
 
 
-#define ROUND_ROBIN
+# ROUND_ROBIN
 
 
-This will make the scheduler to scan the list of tasks and run the next found task in the ready state.
+When round robin is used, the scheduler to scan the list of tasks and run the next found task in the ready state ignoring the prio level of the tasks.
