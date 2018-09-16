@@ -145,7 +145,7 @@ uint8_t os_msg_post( Msg_t *msg, MsgQ_t queue, uint32_t delay, uint32_t period )
 #endif
 }
 
-
+#if( N_QUEUES > 0 )
 static uint8_t queue_push(OSQueue_t *queue, Msg_t *msg ) {
 
 	if ( 0 == queue->size ) return MSG_QUEUE_UNDEF;
@@ -168,6 +168,7 @@ static uint8_t queue_push(OSQueue_t *queue, Msg_t *msg ) {
 	return MSG_QUEUE_POSTED;
 
 }
+#endif
 
 uint8_t os_msg_receive( Msg_t *msg, MsgQ_t queue ) {
     #if( N_QUEUES > 0 )
