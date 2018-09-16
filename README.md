@@ -184,7 +184,7 @@ When a task has finished it gives the CPU control to another task by calling one
 Normally the scheduler will give the cpu to the highest priority task ready for execution. It is possible to choose a round robin scheduling algorithm by putting the following line in os_defines.h:
 
 
-# ROUND_ROBIN
+## ROUND_ROBIN
 
 
 When round robin is used, the scheduler to scan the list of tasks and run the next found task in the ready state ignoring the prio level of the tasks.
