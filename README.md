@@ -24,7 +24,7 @@ cocoOS is extremely portable to any target which makes it a perfect choice durin
 
 ## Configuration
 
-To setup cocoOS you have to define 6 macros. They can be setup in os_defines.h, or as defined as compiler flags, e.g. -DN_TASKS=2... If not defines as flags, they will be set to default values according to the list below:
+To setup cocoOS you have to define 6 macros. They can be setup in os_defines.h, or as defined as compiler flags, e.g. `-DN_TASKS=2...` If not defines as flags, they will be set to default values according to the list below:
 
     - N_TASKS: maximum number of tasks            (0-254, default=1)
     - N_QUEUES: maxmimum number of message queues (0-254, default=0)
