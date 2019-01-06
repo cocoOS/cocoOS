@@ -100,7 +100,7 @@ typedef struct {
 } EventQueue_t;
 
 
-void os_event_init();
+void os_event_init( void );
 void os_wait_event( uint8_t tid, Evt_t ev, uint8_t waitSingleEvent, uint32_t timeout );
 void os_wait_multiple( uint8_t waitAll, ...);
 void os_signal_event( Evt_t ev );
