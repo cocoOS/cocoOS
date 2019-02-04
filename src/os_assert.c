@@ -45,7 +45,7 @@ void os_on_assert(const char* file, uint16_t line, const char* expr) {
     l = line;
     l = l;
  
-    if ( 0 != user_callback) {
+    if (0 != user_callback) {
       user_callback(file, line, expr);
     }
  
