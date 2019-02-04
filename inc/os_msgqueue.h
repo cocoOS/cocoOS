@@ -134,7 +134,7 @@ enum {
 
 
 
-void os_msgQ_init();
+void os_msgQ_init( void );
 MsgQ_t os_msgQ_create( Msg_t *buffer, uint8_t nMessages, uint16_t msgSize,  uint8_t task_id );
 MsgQ_t os_msgQ_find( uint8_t task_id );
 //Sem_t os_msgQ_sem_get( MsgQ_t queue );
