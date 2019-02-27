@@ -92,6 +92,13 @@ extern "C" {
 #define NO_MSG_ID   0xff
 #define ISR_TID     0xfe
 
+    /* Total number of semaphores needed */
+#define N_TOTAL_SEMAPHORES    ( N_SEMAPHORES + N_QUEUES )
+
+
+/* Total number of events needed */
+#define N_TOTAL_EVENTS        ( N_EVENTS + N_QUEUES )
+
 #ifdef __cplusplus
 }
 #endif
