@@ -62,14 +62,6 @@ extern "C" {
 #define NO_QUEUE        255
 #define NO_SEM          255
 
-/* Total number of semaphores needed */
-#define N_TOTAL_SEMAPHORES    ( N_SEMAPHORES + N_QUEUES )
-
-
-/* Total number of events needed */
-#define N_TOTAL_EVENTS        ( N_EVENTS + N_QUEUES )
-
-
 
 
 
