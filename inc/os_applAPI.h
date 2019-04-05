@@ -801,7 +801,9 @@ static void task2(void) {
 *       
 */
 /*********************************************************************************/
-#define msg_receive( task_id, pMsg )        OS_MSG_Q_RECEIVE( task_id, pMsg, 0 )
+#define msg_receive( task_id, pMsg )        OS_MSG_Q_RECEIVE( task_id, pMsg, 0, 0 )
+
+#define msg_receive_ex( task_id, pMsg, cb )        OS_MSG_Q_RECEIVE( task_id, pMsg, 0, cb )
 
 
 /*********************************************************************************/

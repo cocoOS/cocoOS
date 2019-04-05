@@ -593,28 +593,28 @@ void os_task_signal_event( Evt_t eventId ) {
     shift = eventId & 0x07;
 
     for ( index = 0; index != nTasks; index++ ) {
-        uint8_t taskWaitingForEvent;
-		uint8_t taskWaitStateOK;
-		TaskState_t state;
-		
-		state = task_list[ index ].state;
-		taskWaitStateOK = 0;
-		
-		if (( state == WAITING_EVENT ) || ( state == WAITING_EVENT_TIMEOUT )) {
-		    taskWaitStateOK = 1;
-		}
-					
-        taskWaitingForEvent = task_list[ index ].eventQueue.eventList[eventListIndex] & (1<<shift);
-        
-        if ( taskWaitingForEvent  &&  taskWaitStateOK ) {
+      uint8_t taskWaitingForEvent;
+      uint8_t taskWaitStateOK;
+      TaskState_t state;
+
+      state = task_list[ index ].state;
+      taskWaitStateOK = 0;
+
+      if (( state == WAITING_EVENT ) || ( state == WAITING_EVENT_TIMEOUT )) {
+          taskWaitStateOK = 1;
+      }
             
-            task_list[ index ].eventQueue.eventList[eventListIndex] &= ~(1<<shift);
-            
-            if ( task_list[ index ].waitSingleEvent || os_task_wait_queue_empty( index ) ) {
-                os_task_clear_wait_queue( index );
-                task_ready_set( index );
-            }
-        }
+      taskWaitingForEvent = task_list[ index ].eventQueue.eventList[eventListIndex] & (1<<shift);
+
+      if ( taskWaitingForEvent  &&  taskWaitStateOK ) {
+
+          task_list[ index ].eventQueue.eventList[eventListIndex] &= ~(1<<shift);
+
+          if ( task_list[ index ].waitSingleEvent || os_task_wait_queue_empty( index ) ) {
+              os_task_clear_wait_queue( index );
+              task_ready_set( index );
+          }
+      }
     }
 }
 
