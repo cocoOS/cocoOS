@@ -260,7 +260,8 @@ static void myTask(void) {
 }
  @endcode 
  *******************************************************************************/
-#define event_wait(event)    OS_WAIT_SINGLE_EVENT(event,0)
+#define event_wait(event)    OS_WAIT_SINGLE_EVENT(event,0,0)
+#define event_wait_ex(event, cb)    OS_WAIT_SINGLE_EVENT(event,0,cb)
 
 
 /*********************************************************************************/
@@ -290,7 +291,8 @@ static void myTask(void) {
 }
  @endcode 
  *******************************************************************************/
-#define event_wait_timeout(event,timeout)    OS_WAIT_SINGLE_EVENT(event,timeout)
+#define event_wait_timeout(event,timeout)    OS_WAIT_SINGLE_EVENT(event,timeout,0)
+#define event_wait_timeout_ex(event,timeout,cb)    OS_WAIT_SINGLE_EVENT(event,timeout,cb)
 
 /*********************************************************************************/
 /*  event_get_timeout()                                                 *//**

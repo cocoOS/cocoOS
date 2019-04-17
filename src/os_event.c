@@ -155,11 +155,14 @@ Evt_t event_last_signaled_get(void) {
 }
 
 
-void os_wait_event(uint8_t tid, Evt_t ev, uint8_t waitSingleEvent, uint32_t timeout) {
+void os_wait_event(uint8_t tid, Evt_t ev, uint8_t waitSingleEvent, uint32_t timeout, void (*cb)(void)) {
 #if( N_TOTAL_EVENTS > 0 )
     if ( ev < nEvents ) {
         eventList[ ev ].signaledByTid = NO_TID;
         os_task_wait_event( tid, ev, waitSingleEvent, timeout );
+        if (cb) {
+          cb();
+        }
     }
 #endif
 }
