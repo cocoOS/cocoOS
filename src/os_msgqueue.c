@@ -36,7 +36,7 @@
 
 
 
-#include "cocoos.h"
+#include "../inc/cocoos.h"
 
 
 typedef struct {

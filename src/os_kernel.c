@@ -35,7 +35,7 @@
  
 
 
-#include "cocoos.h"
+#include "../inc/cocoos.h"
 
 static void os_schedule( void );
 

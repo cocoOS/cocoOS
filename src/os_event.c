@@ -34,7 +34,7 @@
  */
  
 
-#include "cocoos.h"
+#include "../inc/cocoos.h"
 #include "stdarg.h"
 /** @file os_event.c Event source file*/
 

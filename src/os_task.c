@@ -34,7 +34,7 @@
  */
 /** @file os_task.c */
 
-#include "cocoos.h"
+#include "../inc/cocoos.h"
 #include <stdlib.h>
 
 

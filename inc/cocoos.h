@@ -57,10 +57,10 @@ extern "C" {
 
 #endif
 
-#define NO_TID	        255
-#define NO_EVENT        255
-#define NO_QUEUE        255
-#define NO_SEM          255
+#define NO_TID	        32
+#define NO_EVENT        32
+#define NO_QUEUE        32
+#define NO_SEM          32
 
 
 

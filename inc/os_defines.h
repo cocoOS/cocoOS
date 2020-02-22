@@ -50,7 +50,7 @@ extern "C" {
 /** Max number of used tasks
 * @remarks Must be defined. @n Allowed range: 0-254. Value must not be exceeded */
 #ifndef N_TASKS
- #define N_TASKS             1
+ #define N_TASKS             5
 #endif
 
 
@@ -58,7 +58,7 @@ extern "C" {
 /** Max number of used message queues
 * @remarks Must be defined. @n Allowed range: 0-254. Value must not be exceeded */
 #ifndef N_QUEUES
- #define N_QUEUES            0
+ #define N_QUEUES            1
 #endif
 
 
@@ -86,7 +86,7 @@ extern "C" {
 /** Memory size
  * @remarks Should be set to the size of address pointer */
 #ifndef Mem_t
- #define Mem_t uint32_t
+ #define Mem_t uint16_t
 #endif
 
 #define NO_MSG_ID   0xff

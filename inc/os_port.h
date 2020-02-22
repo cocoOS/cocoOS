@@ -37,11 +37,12 @@
 #ifndef OS_PORT_H_
 #define OS_PORT_H_
 
+#include <xc.h>
 //#include <interrupt.h>
 //#define os_enable_interrupts()  __enable_irq()
 //#define os_disable_interrupts() __disable_irq()
 
-#define os_enable_interrupts()
-#define os_disable_interrupts()
+#define os_enable_interrupts()  GIE=1
+#define os_disable_interrupts() GIE=0
 
 #endif
