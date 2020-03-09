@@ -185,6 +185,11 @@ Normally the scheduler will give the cpu to the highest priority task ready for 
 
 
 ## ROUND_ROBIN
-
-
 When round robin is used, the scheduler to scan the list of tasks and run the next found task in the ready state ignoring the prio level of the tasks.
+
+## event_wait() and event_wait_ex()
+A task can be set to wait for an event to be signaled, by calling event_wait(). If the event is signaled from another task, this works as expected. If however the event is signaled from an interrupt, a race condition can occur if the interrupt is already enabled and is triggered at the same moment as the task is set to wait for the event.
+In these situations, it is recommended to use event_wait_ex(), which takes a callback of type void (*cb)(void) as parameter.
+event_wait_ex() first sets the task in wait state, then calls the user provided callback, and finally gives control back to the OS.
+The callback should be used for enabling the interrupt that will signal the event. The interrupt should be disabled within the isr.
+
