@@ -188,8 +188,38 @@ Normally the scheduler will give the cpu to the highest priority task ready for 
 When round robin is used, the scheduler to scan the list of tasks and run the next found task in the ready state ignoring the prio level of the tasks.
 
 ## event_wait() and event_wait_ex()
-A task can be set to wait for an event to be signaled, by calling event_wait(). If the event is signaled from another task, this works as expected. If however the event is signaled from an interrupt, a race condition can occur if the interrupt is already enabled and is triggered at the same moment as the task is set to wait for the event.
-In these situations, it is recommended to use event_wait_ex(), which takes a callback of type void (*cb)(void) as parameter.
-event_wait_ex() first sets the task in wait state, then calls the user provided callback, and finally gives control back to the OS.
-The callback should be used for enabling the interrupt that will signal the event. The interrupt should be disabled within the isr.
+A task can be set to wait for an event to be signaled, by calling event_wait(). If the event is signaled from another task, everything works as expected: when the event is signaled, the waiting task is ready for execution again.
+```
+void task() {
+  task_open();
+  for (;;) {
+    event_wait(anEvt);
+    do_something();
+  }
+  task_close();
+```
+
+However, if the event is signaled from an interrupt, a race condition can occur during execution of event_wait() which can result in an inconsistent state of the task. The task will wait forever and never receive the event. This can happen if the interrupt is enabled and gets triggered during the event_wait() call.
+
+The solution is to do the following:
+- disable the interrupt from start, and also in the isr, so it is not automatically re-enabled.
+- use event_wait_ex() instead and provide it with a callback
+- in the callback: enable the interrupt
+
+```
+void myCallback(void) {
+  doStuffBeforeWait(); // this is a perfect place to e.g turn off radio power before entering wait
+  enableEventSignalingInterrupt();
+}
+
+void task() {
+  task_open();
+  for(;;) {
+    event_wait_ex(anEvt, myCallback);
+    do_something();
+  }
+  task_close();
+}
+```
+
 
