@@ -41,7 +41,26 @@
 //#define os_enable_interrupts()  __enable_irq()
 //#define os_disable_interrupts() __disable_irq()
 
+
+#define STRINGIZE(s) PRE_STRINGIZE(s)
+#define PRE_STRINGIZE(s) #s
+
+#if defined(PORT_INTERRUPT_HEADER)
+#include STRINGIZE(PORT_INTERRUPT_HEADER)
+#endif
+
+
+#if defined(PORT_INTE) && !defined(os_enable_interrupts)
+#define os_enable_interrupts() PORT_INTE
+#else
 #define os_enable_interrupts()
+#endif
+
+#if defined(PORT_INTD) && !defined(os_disable_interrupts)
+#define os_disable_interrupts() PORT_INTD
+#else
 #define os_disable_interrupts()
+#endif
+
 
 #endif
