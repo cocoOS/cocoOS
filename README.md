@@ -222,4 +222,18 @@ void task() {
 }
 ```
 
+Limitation of using:
+Here are some usual wrong/right sample code:
+void task() {
+  task_open();
+  for(;;) {
+    for (i=0;i<xx;i++)
+    {....
+     task_wait(xxx);   //wrong, task wait only avaliable in 1st level of task loop,it cant be in sub loop;
+    }
+    task_wait(xxx);    //right, here are the correct location task_wait() can be .
+  }
+  task_close();
+}
+
 
