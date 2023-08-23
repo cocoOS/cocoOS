@@ -18,6 +18,9 @@ Also, task procedures can be outlined in the same style as when using a traditio
 
 cocoOS is extremely portable to any target which makes it a perfect choice during early phases in the development when which OS to use is still an open issue. You can even run it under Linux or Windows.
 
+##Performance
+For example: porting on PIC16Fxx chip,compile with XC8 V1.4, the cost: RAM 1.9k,ROM 2.3K
+
 # Getting Started
 
  
